@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo Storage Module</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { color: #333; }
+    .status { padding: 1rem; border-radius: 4px; margin: 1rem 0; }
+    .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    code { background: #f4f4f4; padding: 0.2rem 0.4rem; border-radius: 3px; }
+    pre { background: #f4f4f4; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+    button { padding: 0.5rem 1rem; margin: 0.5rem 0; cursor: pointer; }
+    ul { line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <h1>Todo JSON Storage Module</h1>
+  <p>This is a Node.js module for reading/writing todos to <code>todos.json</code>.</p>
+  
+  <h2>Module Functions</h2>
+  <ul>
+    <li><code>readTodos(filePath?)</code> - Returns Promise&lt;Array&gt;</li>
+    <li><code>writeTodos(todos, filePath?)</code> - Returns Promise&lt;void&gt;</li>
+    <li><code>addTodo(todo, filePath?)</code> - Returns Promise&lt;Object&gt;</li>
+    <li><code>updateTodo(id, updates, filePath?)</code> - Returns Promise&lt;Object|null&gt;</li>
+    <li><code>deleteTodo(id, filePath?)</code> - Returns Promise&lt;boolean&gt;</li>
+  </ul>
+
+  <h2>Usage</h2>
+  <pre><code>const { readTodos, writeTodos, addTodo, updateTodo, deleteTodo } = require('./src/store');
+
+// Read all todos
+const todos = await readTodos();
+
+// Add a new todo
+await addTodo({ id: Date.now(), title: 'Learn Node.js', completed: false });
+
+// Update a todo
+await updateTodo(id, { completed: true });
+
+// Delete a todo
+await deleteTodo(id);</code></pre>
+
+  <h2>Run Tests</h2>
+  <p>Install dependencies and run tests:</p>
+  <pre><code>npm install
+npm test</code></pre>
+
+  <div id="status" class="status" style="display: none;"></div>
+
+  <script>
+    // This is a Node.js module - the HTML is for documentation only
+    document.getElementById('status').style.display = 'block';
+    document.getElementById('status').className = 'status success';
+    document.getElementById('status').textContent = 'This is a Node.js module. Run `npm test` in terminal to verify.';
+  </script>
+</body>
+</html>
